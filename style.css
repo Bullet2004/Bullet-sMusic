@@ -119,22 +119,26 @@
   
   .progress {
     width: 100%;
-    -webkit-appearance: none;
     height: 6px;
     background: #d3d3d3;
+    accent-color: var(--primary-color);
     outline: none;
     opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
+    border-radius: 5px;
   }
-  
+
+  .progress:hover{
+    cursor: pointer;
+  }
+
   .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
-    height: 6px;
+    height: 12px;
     background-color: var(--primary-color);
     cursor: pointer;
+    border-radius: 50%;
   }
   
   /* PLAYLIST */
@@ -167,9 +171,16 @@
     color: #fff;
   }
 
+  .song:hover .option,
+  .song:hover .author,
+  .song:hover .title {
+    color: #fff;
+  }
+
   .song:hover {
-    cursor: pointer;
+    background-color: var(--primary-color);
     opacity: 0.8;
+    cursor: pointer;
   }
   
   .song .thumb {
@@ -203,8 +214,18 @@
   
   /* FOOTER */
   #footer{
-    padding: 64px 16px;
+    position: relative;
+    max-width: 460px;
+    margin: 0 auto;
     text-align: center;
+    align-items: center;
+    background: #53fbf0;
+    padding: 5px 5px;
+    border-radius: 10px;
+}
+
+#footer .copyright{
+  font-size: 18px;
 }
 
 #footer .socials-list{
@@ -215,15 +236,9 @@
     color: rgba(0,0,0,0.6);
     text-decoration: none;
 }
-#footer .copyright a:hover,
 #footer .socials-list a:hover{
     color: rgba(0,0,0,0.4);
 
-}
-
-#footer .copyright{
-    margin-top: 15px;
-    color: rgba(0,0,0,0.6);
 }
 
 #footer .copyright a{
