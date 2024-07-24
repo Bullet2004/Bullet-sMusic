@@ -20,6 +20,10 @@
               <h4>Now playing:</h4>
               <h2>String 57th & 9th</h2>
             </header>
+
+            <div class="mode">
+              <div class="mode-btn"></div>
+            </div>
         
             <!-- CD -->
             <div class="cd">
@@ -67,6 +71,86 @@
           </div>
       </div>
       <script src="main.js"></script>
+      <script>
+        var modeContainer = document.querySelector('.mode');
+        var modeBtn = document.querySelector('.mode-btn');
+        var controllBtns = document.querySelectorAll('.control .btn');
+        var body = document.querySelector('body');
+        var dashboard = document.querySelector('.dashboard');
+        var h2 = document.querySelector('h2');
+        var h4 = document.querySelector('h4');
+        var CdThumb = document.querySelector('.cd-thumb');
+        var songs = document.querySelectorAll('.song');
+        var progressBar = document.querySelector('.progress');
 
+        modeContainer.onclick = function() {
+            if (!isDarkMode) {
+              modeBtn.style.animation = 'move-down 1s ease forwards';
+              if(modeContainer.classList.contains('animate-to-dark')) {
+                modeContainer.classList.remove('animate-to-dark')
+                modeContainer.classList.add('animate-to-light');
+              }
+              else{
+                modeContainer.classList.add('animate-to-light');
+              }
+              if(modeBtn.classList.contains('animate-to-light')) {
+                modeBtn.classList.remove('animate-to-light')
+                modeBtn.classList.add('animate-to-dark');
+              }
+              else{
+                modeBtn.classList.add('animate-to-dark');
+              }
+
+              dashboard.classList.add('app-dark-mode');
+              body.style.background = 'url(./assets/img/dark-night.jpg)';
+              h2.classList.add('app-dark-mode');
+              h4.classList.add('app-dark-mode');
+              modeContainer.classList.add('app-dark-mode');
+              modeBtn.classList.add('app-dark-mode');
+              CdThumb.classList.add('app-dark-mode');
+              progressBar.classList.add('app-dark-mode');
+              Array.from(controllBtns).forEach(function(controllBtn) {
+                controllBtn.classList.add('app-dark-mode');
+              });
+              Array.from(songs).forEach(function(song) {
+                song.classList.add('app-dark-mode');
+              });
+
+              isDarkMode = true;
+            } else {
+              modeBtn.style.animation = 'move-up 1s ease forwards';
+              if(modeContainer.classList.contains('animate-to-light')) {
+                modeContainer.classList.remove('animate-to-light')
+                modeContainer.classList.add('animate-to-dark');
+              } else {
+                modeContainer.classList.add('animate-to-dark');
+              }
+              if(modeBtn.classList.contains('animate-to-dark')) {
+                modeBtn.classList.remove('animate-to-dark')
+                modeBtn.classList.add('animate-to-light');
+              } else {
+                modeBtn.classList.add('animate-to-light');
+              }
+
+              dashboard.classList.remove('app-dark-mode');
+              body.style.background = '';
+              h2.classList.remove('app-dark-mode');
+              h4.classList.remove('app-dark-mode');
+              modeContainer.classList.remove('app-dark-mode');
+              modeBtn.classList.remove('app-dark-mode');
+              CdThumb.classList.remove('app-dark-mode');
+              progressBar.classList.remove('app-dark-mode');
+              Array.from(controllBtns).forEach(function(controllBtn) {
+                controllBtn.classList.remove('app-dark-mode');
+              });
+              Array.from(songs).forEach(function(song) {
+                song.classList.remove('app-dark-mode');
+              });
+
+              isDarkMode = false;  
+            }
+            app.render();
+        }
+      </script>
 </body>
 </html>

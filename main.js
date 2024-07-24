@@ -16,6 +16,8 @@ const nextBtn = $('.btn-next');
 const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 
+var isDarkMode = false;
+
 const app = {
     currentIndex: 0,
     isPlaying: false,
@@ -88,24 +90,25 @@ const app = {
             image: './assets/img/ST10.jpeg'
         }
     ],
-        render: function() {
-            const htmls = this.songs.map((song, index) => {
-                return `
-                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index = "${index}">
-                <div class="thumb" style="background-image: url('${song.image}')">
+    render: function() {
+        const htmls = this.songs.map((song, index) => {
+            return `
+                <div class="song ${index === this.currentIndex ? 'active' : ''} ${isDarkMode ? 'app-dark-mode' : ''}" data-index="${index}">
+                    <div class="thumb" style="background-image: url('${song.image}')">
+                    </div>
+                    <div class="body">
+                        <h3 class="title">${song.name}</h3>
+                        <p class="author">${song.singer}</p>
+                    </div>
+                    <div class="option">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
                 </div>
-                <div class="body">
-                <h3 class="title">${song.name}</h3>
-                <p class="author">${song.singer}</p>
-                </div>
-                <div class="option">
-                <i class="fas fa-ellipsis-h"></i>
-                </div>
-                </div>
-                `
-            })
-            playlist.innerHTML = htmls.join('');
-        },
+            `;
+        });
+        playlist.innerHTML = htmls.join('');
+    },
+    
         defineProperties: function() {
             Object.defineProperty(this, 'currentSong', {
                 get: function() {

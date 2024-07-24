@@ -1,6 +1,9 @@
 :root {
     --primary-color: #ec1f55;
     --text-color: #333;
+    --dark-mode: #121212;
+    --blue-navy: #001f3f;
+    --blue-gray: #2c3e50;
   }
   
   * {
@@ -44,8 +47,100 @@
     top: 0;
     width: 100%;
     max-width: 480px;
-    border-bottom: 1px solid #ebebeb;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   }
+
+  .dashboard.app-dark-mode {
+    background-color: var(--blue-navy);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.8),
+    0 0 3px rgba(255, 255, 255, 0.6), 
+    0 0 6px rgba(255, 255, 255, 0.4);
+  }
+
+  .mode {
+    background-color: #333;
+    border-radius: 20px;
+    width: 30px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    padding: 5px 5px;
+    display: flex;
+    transition: background-color 1s ease;
+}
+
+.mode.app-dark-mode {
+  box-shadow: 0 0 5px rgba(213, 245, 97, 0.8),
+    0 0 10px rgba(213, 245, 97, 0.6), 
+    0 0 15px rgba(213, 245, 97, 0.4);
+}
+
+.mode:hover {
+  cursor: pointer;
+}
+
+.mode .mode-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: background-color 1s ease;
+}
+
+/* Định nghĩa hiệu ứng động */
+@keyframes move-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(17px); /* Di chuyển xuống 35px */
+    }
+}
+
+@keyframes change-color-to-dark {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: #333;
+  }
+}
+
+@keyframes move-up {
+  from {
+      transform: translateY(17px);
+  }
+  to {
+      transform: translateY(0); /* Di chuyển xuống 35px */
+  }
+}
+
+@keyframes change-color-to-light {
+  from {
+    background-color: #333;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+
+.mode.animate-to-dark {
+  animation: change-color-to-dark 2s ease forwards;
+}
+
+.mode-btn.animate-to-light {
+  animation: change-color-to-light 2s ease forwards;
+}
+
+.mode.animate-to-light {
+  animation: change-color-to-light 2s ease forwards;
+}
+
+.mode-btn.animate-to-dark {
+  /* animation: change-color-to-dark 2s ease forwards; */
+  background-color: #333;
+}
 
   .btn-repeat:hover,
   .btn-prev:hover,
@@ -70,6 +165,14 @@
     color: var(--text-color);
     font-size: 20px;
   }
+
+  header h4.app-dark-mode {
+    color: #53fbf0;
+  }
+
+  header h2.app-dark-mode{
+    color: #ffffff;
+  }
   
   /* CD */
   .cd {
@@ -86,6 +189,12 @@
     background-size: cover;
     margin: auto;
   }
+
+  .cd-thumb.app-dark-mode {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.6), 
+    0 0 15px rgba(255, 255, 255, 0.4);
+  }
   
   /* CONTROL */
   .control {
@@ -97,12 +206,40 @@
   
   .control .btn {
     color: #666;
-    padding: 18px;
     font-size: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .control .btn.app-dark-mode {
+    color: #fff;
+    background-color: var(--blue-gray);
+  }
+
+  .control .btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+
+  
+  .control .btn.app-dark-mode:hover {
+    background-color: var(--blue-navy);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.8),
+    0 0 3px rgba(255, 255, 255, 0.6), 
+    0 0 6px rgba(255, 255, 255, 0.4);
   }
   
   .control .btn.active {
     color: var(--primary-color);
+  }
+
+  .control .btn.app-dark-mode.active {
+    color: #53fbf0;
   }
   
   .control .btn-toggle-play {
@@ -123,22 +260,15 @@
     background: #d3d3d3;
     accent-color: var(--primary-color);
     outline: none;
-    opacity: 0.7;
     border-radius: 5px;
+  }
+
+  .progress.app-dark-mode {
+    accent-color: var(--blue-gray);
   }
 
   .progress:hover{
     cursor: pointer;
-  }
-
-  .progress::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background-color: var(--primary-color);
-    cursor: pointer;
-    border-radius: 50%;
   }
   
   /* PLAYLIST */
@@ -160,14 +290,29 @@
   .song.active {
     background-color: var(--primary-color);
   }
+
+  .song.app-dark-mode.active {
+    background-color: var(--blue-gray);
+  }
   
   .song:active {
     opacity: 0.8;
   }
+
+  .song.app-dark-mode:active {
+    opacity: 0.8;
+  }
+
   
   .song.active .option,
   .song.active .author,
   .song.active .title {
+    color: #fff;
+  }
+
+  .song.app-dark-mode.active .option,
+  .song.app-dark-mode.active .author,
+  .song.app-dark-mode.active .title {
     color: #fff;
   }
 
@@ -177,8 +322,20 @@
     color: #fff;
   }
 
+  .song.app-dark-mode:hover .option,
+  .song.app-dark-mode:hover .author,
+  .song.app-dark-mode:hover .title {
+    color: #fff;
+  }
+
   .song:hover {
     background-color: var(--primary-color);
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .song.app-dark-mode:hover {
+    background-color: var(--blue-gray);
     opacity: 0.8;
     cursor: pointer;
   }
